@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Bowl Coach — Academic Beast LLC</title>
+    <meta name="description" content="The ultimate National Science Bowl practice app for middle school students. 11,334 official questions with Listen Mode and Buzz-In voice answers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black:   #080808;
+            --blue:    #1a6fd4;
+            --cyan:    #00c8e0;
+            --orange:  #e8762c;
+            --white:   #f5f5f5;
+            --glass:   rgba(255,255,255,0.06);
+            --border:  rgba(255,255,255,0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Background ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(26,111,212,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(232,118,44,0.1) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0,200,224,0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 48px;
+            background: rgba(8,8,8,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, var(--cyan), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        nav a {
+            color: rgba(245,245,245,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--white); }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: var(--white) !important;
+            padding: 10px 22px;
+            border-radius: 100px;
+            font-weight: 600 !important;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover { opacity: 0.85; }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+        }
+
+        .hero-inner { max-width: 780px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(26,111,212,0.15);
+            border: 1px solid rgba(26,111,212,0.3);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--cyan);
+            margin-bottom: 32px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .grad {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--white) 50%, var(--orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(245,245,245,0.6);
+            max-width: 560px;
+            margin: 0 auto 48px;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 32px rgba(26,111,212,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(26,111,212,0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ── Stats strip ── */
+        .stats {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 0 24px 80px;
+        }
+
+        .stats-inner {
+            display: flex;
+            gap: 0;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        .stat {
+            padding: 28px 48px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child { border-right: none; }
+
+        .stat-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--cyan), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(245,245,245,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+
+        /* ── Features ── */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--orange);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 64px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: border-color 0.3s, transform 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(0,200,224,0.3);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .icon-blue  { background: rgba(26,111,212,0.2); }
+        .icon-cyan  { background: rgba(0,200,224,0.2); }
+        .icon-orange{ background: rgba(232,118,44,0.2); }
+        .icon-teal  { background: rgba(64,224,200,0.2); }
+
+        .feature-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: rgba(245,245,245,0.55);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        /* ── Subjects ── */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .subject-chip {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 16px;
+            text-align: center;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .subject-chip:hover {
+            background: rgba(26,111,212,0.1);
+            border-color: rgba(26,111,212,0.3);
+        }
+
+        .subject-chip .emoji { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+        .subject-chip span { font-size: 0.8rem; color: rgba(245,245,245,0.6); font-weight: 500; }
+
+        /* ── Pricing ── */
+        .pricing-section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 24px;
+            text-align: center;
+        }
+
+        .pricing-card {
+            max-width: 420px;
+            margin: 64px auto 0;
+            background: var(--glass);
+            border: 1px solid rgba(26,111,212,0.3);
+            border-radius: 28px;
+            padding: 48px 40px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan), var(--orange));
+        }
+
+        .trial-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--orange), #f5a623);
+            color: var(--black);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+
+        .price {
+            font-family: 'Syne', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .price sup { font-size: 1.5rem; vertical-align: super; }
+        .price-period { color: rgba(245,245,245,0.4); font-size: 0.9rem; margin-bottom: 32px; }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 36px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: rgba(245,245,245,0.75);
+        }
+
+        .pricing-features li:last-child { border-bottom: none; }
+
+        .check {
+            width: 22px; height: 22px;
+            background: rgba(0,200,224,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--cyan);
+            font-size: 0.75rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(90deg, var(--cyan), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: rgba(245,245,245,0.4);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-copy {
+            color: rgba(245,245,245,0.25);
+            font-size: 0.8rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            nav ul { display: none; }
+            .stats-inner { flex-direction: column; }
+            .stat { border-right: none; border-bottom: 1px solid var(--border); }
+            .stat:last-child { border-bottom: none; }
+            .section { padding: 60px 20px; }
+        }
+
+        /* ── Fade in animation ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .fade-up:nth-child(1) { animation-delay: 0.1s; }
+        .fade-up:nth-child(2) { animation-delay: 0.2s; }
+        .fade-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-up:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <a href="/" class="nav-logo">
+            <span>Academic Beast LLC</span>
+        </a>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#subjects">Subjects</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="#download" class="nav-cta">Download</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="fade-up">
+                <span class="hero-badge">National Science Bowl Practice</span>
+            </div>
+            <h1 class="fade-up">
+                Train Like a<br>
+                <span class="grad">Science Beast</span>
+            </h1>
+            <p class="fade-up">
+                11,334 official NSB Middle School questions with Listen Mode,
+                voice Buzz-In, and real competition pacing. The app that trains you the way Science Bowl actually works.
+            </p>
+            <div class="hero-cta fade-up" id="download">
+                <a href="#" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on App Store
+                </a>
+                <a href="support.html" class="btn-secondary">
+                    Learn More →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stats-inner">
+            <div class="stat">
+                <span class="stat-value">11,334</span>
+                <span class="stat-label">Official Questions</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">16</span>
+                <span class="stat-label">Complete Sets</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">7</span>
+                <span class="stat-label">Subjects</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">Free</span>
+                <span class="stat-label">2-Week Trial</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <section class="section" id="features">
+        <p class="section-label">Why Science Bowl Coach</p>
+        <h2 class="section-title">Practice the way<br>competitions actually work</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon icon-cyan">🎧</div>
+                <h3>Listen Mode</h3>
+                <p>Questions are read aloud word by word — exactly like a real moderator. Words appear on screen as they are spoken, just like competition day.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-orange">⚡</div>
+                <h3>Voice Buzz-In</h3>
+                <p>Press the Buzz button and speak your answer. Say W, X, Y, or Z — or the full answer text. The app scores you instantly without any typing.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-blue">👁</div>
+                <h3>Watch Mode</h3>
+                <p>Questions appear silently on screen for focused self-study. Write your answer before revealing. Great for quiet practice in a library or classroom.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-teal">📚</div>
+                <h3>Browse All Sets</h3>
+                <p>All 16 official NSB Middle School question sets organized by round. Review any set, browse individual questions, or start a quiz from any round.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-blue">🎯</div>
+                <h3>Build a Quiz</h3>
+                <p>Choose your subject, question type (Multiple Choice or Short Answer), and how many questions. Fully customizable practice sessions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-cyan">📊</div>
+                <h3>Track Progress</h3>
+                <p>Session stats show your accuracy across every practice round. See your improvement over time and identify which subjects need more work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects -->
+    <section class="section" id="subjects">
+        <p class="section-label">Coverage</p>
+        <h2 class="section-title">Every subject,<br>fully covered</h2>
+        <div class="subjects-grid">
+            <div class="subject-chip">
+                <span class="emoji">🧬</span>
+                <span>Life Science</span>
+            </div>
+            <div class="subject-chip">
+                <span class="emoji">⚗️</span>
+                <span>Physical Science</span>
+            </div>
+            <div class="subject-chip">
+                <span class="emoji">🔭</span>
+                <span>Earth & Space</span>
+            </div>
+            <div class="subject-chip">
+                <span class="emoji">🌍</span>
+                <span>Earth Science</span>
+            </div>
+            <div class="subject-chip">
+                <span class="emoji">📐</span>
+                <span>Math</span>
+            </div>
+            <div class="subject-chip">
+                <span class="emoji">⚡️</span>
+                <span>Energy</span>
+            </div>
+            <div class="subject-chip">
+                <span class="emoji">🔬</span>
+                <span>General Science</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing-section" id="pricing">
+        <p class="section-label">Pricing</p>
+        <h2 class="section-title" style="font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-0.02em;">Simple, affordable pricing</h2>
+        <div class="pricing-card">
+            <span class="trial-badge">2 Weeks Free Trial</span>
+            <div class="price"><sup>$</sup>4.99</div>
+            <p class="price-period">per month · cancel anytime</p>
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> 11,334 official NSB questions</li>
+                <li><span class="check">✓</span> Listen Mode with word-by-word TTS</li>
+                <li><span class="check">✓</span> Voice Buzz-In for hands-free answers</li>
+                <li><span class="check">✓</span> Watch Mode for silent study</li>
+                <li><span class="check">✓</span> All 16 question sets + browse by round</li>
+                <li><span class="check">✓</span> iPhone + iPad support</li>
+                <li><span class="check">✓</span> No account or login required</li>
+            </ul>
+            <a href="#download" class="btn-primary" style="width:100%;justify-content:center;">
+                Start Free Trial
+            </a>
+            <p style="margin-top:16px;font-size:0.8rem;color:rgba(245,245,245,0.35);">
+                Manage subscription in Settings → Apple ID → Subscriptions
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">Academic Beast LLC</div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:support@academicbeastllc.com">Contact</a>
+            </div>
+            <p class="footer-copy">© 2025 Academic Beast LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
