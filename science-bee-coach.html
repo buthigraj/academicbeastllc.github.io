@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Bee Coach — Academic Beast LLC</title>
+    <meta name="description" content="The ultimate preparation tool for students competing in the Science Bee at the elementary, middle school, and high school levels. 2,800+ real archived tossups. Free, no ads, no subscriptions.">
+    <link rel="canonical" href="https://academicbeastllc.com/science-bee-coach.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black:   #080808;
+            --blue:    #1a6fd4;
+            --cyan:    #00c8e0;
+            --orange:  #e8762c;
+            --white:   #f5f5f5;
+            --glass:   rgba(255,255,255,0.06);
+            --border:  rgba(255,255,255,0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(232,118,44,0.14) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(26,111,212,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0,200,224,0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 48px;
+            background: rgba(8,8,8,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, var(--cyan), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        nav a {
+            color: rgba(245,245,245,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--white); }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--orange), #f5a623);
+            color: var(--black) !important;
+            padding: 10px 22px;
+            border-radius: 100px;
+            font-weight: 600 !important;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover { opacity: 0.85; }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 60px;
+        }
+
+        .hero-inner { max-width: 800px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232,118,44,0.15);
+            border: 1px solid rgba(232,118,44,0.35);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--orange);
+            margin-bottom: 32px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--orange);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.6rem, 7vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .grad {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--white) 50%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(245,245,245,0.6);
+            max-width: 620px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--orange), #f5a623);
+            color: var(--black);
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 32px rgba(232,118,44,0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(232,118,44,0.45);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: rgba(0,200,224,0.15);
+            border: 1px solid rgba(0,200,224,0.35);
+            color: var(--cyan);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .qr-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qr-code {
+            width: 132px;
+            height: 132px;
+            border-radius: 16px;
+            background: var(--white);
+            padding: 10px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+        }
+
+        .qr-label {
+            font-size: 0.8rem;
+            color: rgba(245,245,245,0.4);
+            letter-spacing: 0.02em;
+        }
+
+        .stats {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 0 24px 80px;
+        }
+
+        .stats-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        .stat {
+            padding: 28px 40px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child { border-right: none; }
+
+        .stat-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--orange), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: rgba(245,245,245,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+        }
+
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--cyan);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 64px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: border-color 0.3s, transform 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(232,118,44,0.3);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .icon-blue  { background: rgba(26,111,212,0.2); }
+        .icon-cyan  { background: rgba(0,200,224,0.2); }
+        .icon-orange{ background: rgba(232,118,44,0.2); }
+        .icon-teal  { background: rgba(64,224,200,0.2); }
+
+        .feature-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: rgba(245,245,245,0.55);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .subject-chip {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 16px;
+            text-align: center;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .subject-chip:hover {
+            background: rgba(232,118,44,0.1);
+            border-color: rgba(232,118,44,0.3);
+        }
+
+        .subject-chip .emoji { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+        .subject-chip span { font-size: 0.8rem; color: rgba(245,245,245,0.6); font-weight: 500; }
+
+        .free-section {
+            position: relative;
+            z-index: 1;
+            padding: 60px 24px 100px;
+            text-align: center;
+        }
+
+        .free-card {
+            max-width: 560px;
+            margin: 40px auto 0;
+            background: var(--glass);
+            border: 1px solid rgba(0,200,224,0.3);
+            border-radius: 28px;
+            padding: 48px 40px;
+            backdrop-filter: blur(20px);
+        }
+
+        .free-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 24px 0;
+        }
+
+        .free-card li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: rgba(245,245,245,0.75);
+        }
+
+        .free-card li:last-child { border-bottom: none; }
+
+        .check {
+            width: 22px; height: 22px;
+            background: rgba(0,200,224,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--cyan);
+            font-size: 0.75rem;
+        }
+
+        .disclaimer {
+            max-width: 700px;
+            margin: 40px auto 0;
+            font-size: 0.82rem;
+            color: rgba(245,245,245,0.35);
+            text-align: center;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(90deg, var(--cyan), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: rgba(245,245,245,0.4);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-copy {
+            color: rgba(245,245,245,0.25);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            nav ul { display: none; }
+            .stats-inner { flex-direction: column; }
+            .stat { border-right: none; border-bottom: 1px solid var(--border); }
+            .stat:last-child { border-bottom: none; }
+            .section { padding: 60px 20px; }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .fade-up:nth-child(1) { animation-delay: 0.1s; }
+        .fade-up:nth-child(2) { animation-delay: 0.2s; }
+        .fade-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-up:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <a href="/" class="nav-logo">
+            <span>Academic Beast LLC</span>
+        </a>
+        <ul>
+            <li><a href="index.html">Science Bowl Coach</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#coverage">Coverage</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="#download" class="nav-cta">Download</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="fade-up">
+                <span class="hero-badge">Science Bee Coach</span>
+            </div>
+            <h1 class="fade-up">
+                Prepare Like a<br>
+                <span class="grad">Science Bee Champion</span>
+            </h1>
+            <p class="fade-up">
+                Science Bee Coach is the ultimate preparation tool for students competing in the Science Bee at the elementary, middle school, and high school levels. Built on a database of over 2,800 real archived Science Bee tossups spanning multiple competition years, the app gives students access to the same questions they'll face on competition day — not generic trivia.
+            </p>
+            <div class="hero-cta fade-up" id="download">
+                <a href="https://apps.apple.com/bz/app/science-bee-coach/id6804924632" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on App Store
+                </a>
+                <a href="support.html" class="btn-secondary">
+                    Learn More →
+                </a>
+            </div>
+            <div class="fade-up" style="margin-bottom:36px;">
+                <span class="free-badge">100% Free · No Ads · No Subscriptions · No Account Required</span>
+            </div>
+
+            <div class="qr-wrap fade-up">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeAQAAAADlUEq3AAACj0lEQVR4nO2bS2rkQAxAn8aGLMuQA+QolRvMkXK19lH6AAPlZcBGs5DcdiW9yASSUUBauKuptxAUKn1LlA/L9uvjLCT8PTB6ua1UV6htUFvBoFRbAZQ1iM4Jd6KXonZkqqpqB1p1RS8Mqpdy28gTDAtvIjIBs4gAg12s8swm8tKOjUg6J3wXLitQXgWW0f/O0/erkfDn4UGp1wc9rWr7D2ok/A8y4tfmBrCNAAJlRVnALtSqX61Gwp+Gz7Hopax3Py4ZyYSEPdD0MHRQMz+TBtTTfp5gRPhkZadsAsBTwdNunmBEGNUGqnsef+fuhNrspIPonHAnZ5+HJ/h2d3qqb8k81LTBkPBIvY5gAWlp4AHpNlKvApQ/o1p6GEbnhDux4pk2ACujqfpG8dLavpE2GBEe98WwMv9uANuoLI+r1OuDStVNlGUSKFF0TriTm5Pb/9rvoB7dNA920g8GhS2H8NAFOPJBbjVuC3Eym4gJu6ert9bg4fis49QGhZLdpbCw9wc9ftlrMhfAU0HNfDA2vPvBhvd1LSotbn5HpS39YFCYLnF3j2gfyyF2Z5iV7aDwW6M7bxV94xaD6JxwJ15L29P6YzCG2voQJ20wJHyui3oCOFhnfq92u6QfDAofNRkLWITyKjo/rSPz8wAsjyssE/qlaiT8adibEV0TqR8aBXAkiM4Jd/KmR787w1tA6sl85oNR4W5mu/UbxXv02R8MDu8z28xPR3N3xYdGGdRW8xRI54Q7eJ/ZNlnEJ35t9H4RkWe/XgPpnPBdeBHxdxNtUJHpaO6+ikja4M+A58mfTOhlEQE2kZfrQ9pgVLh/u+SfU2Xby9vZHwwLv5vZ9oIapydoe7U7TzAiLPmG94fDfwEMNGkTPZOtbgAAAABJRU5ErkJggg==" alt="QR code to download Science Bee Coach on the App Store" class="qr-code">
+                <span class="qr-label">Scan to download on your phone</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stats-inner">
+            <div class="stat">
+                <span class="stat-value">2,800+</span>
+                <span class="stat-label">Archived Tossups</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">448</span>
+                <span class="stat-label">NQE Bank Questions</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">3</span>
+                <span class="stat-label">Levels: Elem / MS / HS</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">Free</span>
+                <span class="stat-label">Always, No Subscription</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <section class="section" id="features">
+        <p class="section-label">Why Science Bee Coach</p>
+        <h2 class="section-title">Practice the way<br>the Science Bee actually works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon icon-orange">🐝</div>
+                <h3>Pyramidal Buzzer</h3>
+                <p>Practice like you compete. Questions are read aloud sentence by sentence using natural neural text-to-speech. Buzz in early on the first clue for maximum points, or wait for more context. The scoring mirrors the real competition: earlier buzzes earn more points.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-cyan">📝</div>
+                <h3>ORQE Simulator</h3>
+                <p>For Elementary / Middle School: a timed 50-question multiple-choice exam drawn from real ORQE question banks across multiple years. Covers all major science topics with a 20-minute timer, just like the real qualifying exam.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-blue">🎓</div>
+                <h3>NQE Simulator</h3>
+                <p>For High School / JV / Varsity: practice the National Qualifying Exam format with 50 real NQE questions per session, randomly sampled from a bank of 448 questions spanning three competition years. Pause the timer, jump between questions, and review your answers before submitting.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-teal">📚</div>
+                <h3>Flashcards</h3>
+                <p>Study by topic — Chemistry, Cell Biology, Astronomy, Earth Science, Physics, Zoology, Mathematics, Disease & Medicine, and more. Cards are drawn from the real question archive and organized by your weak areas so you spend time where it counts most.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-orange">⚡</div>
+                <h3>Power Drill</h3>
+                <p>Rapid-fire multiple choice questions filtered by topic, difficulty, and school level. Perfect for short study sessions between classes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-cyan">🔥</div>
+                <h3>Daily Challenge</h3>
+                <p>A new set of questions every day combining a pyramidal tossup with a multiple choice round. Build a daily streak and track your improvement over time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage / Subjects -->
+    <section class="section" id="coverage">
+        <p class="section-label">Coverage</p>
+        <h2 class="section-title">Every subject,<br>fully covered</h2>
+        <div class="subjects-grid">
+            <div class="subject-chip"><span class="emoji">⚗️</span><span>Chemistry</span></div>
+            <div class="subject-chip"><span class="emoji">🧬</span><span>Cell Biology</span></div>
+            <div class="subject-chip"><span class="emoji">🔭</span><span>Astronomy</span></div>
+            <div class="subject-chip"><span class="emoji">🌍</span><span>Earth Science</span></div>
+            <div class="subject-chip"><span class="emoji">🧲</span><span>Physics</span></div>
+            <div class="subject-chip"><span class="emoji">🦓</span><span>Zoology</span></div>
+            <div class="subject-chip"><span class="emoji">📐</span><span>Mathematics</span></div>
+            <div class="subject-chip"><span class="emoji">💊</span><span>Disease & Medicine</span></div>
+        </div>
+    </section>
+
+    <!-- Adaptive Stats + Free callout -->
+    <section class="free-section">
+        <p class="section-label">Adaptive Stats</p>
+        <h2 class="section-title" style="font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-0.02em;">Always free. Always improving.</h2>
+        <div class="free-card">
+            <p style="color:rgba(245,245,245,0.6);margin-bottom:8px;">The app tracks your accuracy by topic and surfaces your weakest areas first — see exactly where you need to improve across Chemistry, Physics, Biology, and every other Science Bee category.</p>
+            <ul>
+                <li><span class="check">✓</span> 2,800+ real archived Science Bee tossups</li>
+                <li><span class="check">✓</span> Separate banks for Elementary/MS and HS/JV/Varsity</li>
+                <li><span class="check">✓</span> Haptic feedback with optional answer-selection vibration</li>
+                <li><span class="check">✓</span> No ads, no subscriptions, no account required</li>
+            </ul>
+            <a href="https://apps.apple.com/bz/app/science-bee-coach/id6804924632" class="btn-primary" style="width:100%;justify-content:center;">
+                Download Free on App Store
+            </a>
+        </div>
+        <p class="disclaimer">Science Bee Coach is an independent study tool created by a Science Bee enthusiast. This product is not endorsed by IAC.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">Academic Beast LLC</div>
+            <div class="footer-links">
+                <a href="index.html">Science Bowl Coach</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <p class="footer-copy">© 2026 Academic Beast LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
